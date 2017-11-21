@@ -1,6 +1,6 @@
 {
-  "memory": "2G",
-  "instances": 1,
+  "memory": "1G",
+  "instances": 2,
   "services": [
 		{
 			"type": "MySQLCS",
