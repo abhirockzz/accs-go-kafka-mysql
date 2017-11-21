@@ -6,8 +6,8 @@ import (
 	"log"
 	"os"
 	"os/signal"
-	"time"
 	"strings"
+	"time"
 
 	cluster "github.com/bsm/sarama-cluster"
 	_ "github.com/go-sql-driver/mysql"
@@ -18,10 +18,10 @@ func main() {
 	mysqlUser := os.Getenv("MYSQLCS_USER_NAME")
 	mysqlPwd := os.Getenv("MYSQLCS_USER_PASSWORD")
 	mysqlConnString := os.Getenv("MYSQLCS_CONNECT_STRING")
-	
+
 	mysqlConnStringAndDB := strings.Split(mysqlConnString, "/")
-    hostport, dbname := mysqlConnStringAndDB[0], mysqlConnStringAndDB[1]
-    fmt.Println(hostport, dbname)
+	hostport, dbname := mysqlConnStringAndDB[0], mysqlConnStringAndDB[1]
+	fmt.Println(hostport, dbname)
 
 	mysqlDSNForDriver := mysqlUser + ":" + mysqlPwd + "@tcp(" + hostport + ")/" + dbname
 
@@ -36,15 +36,15 @@ func main() {
 	if err != nil {
 		panic(err.Error())
 	}
-	
+
 	fmt.Println("connected to MySQL...")
 
-	stmtIns, err := db.Prepare("INSERT INTO datadump (`topic`,`partition`,`offset`,`key`,`value`,`processedby`,`createdat`) VALUES(?,?,?,?,?,?,?)") 
+	stmtIns, err := db.Prepare("INSERT INTO datadump (`topic`,`partition`,`offset`,`key`,`value`,`processedby`,`createdat`) VALUES(?,?,?,?,?,?,?)")
 
 	if err != nil {
-		panic(err.Error()) 
+		panic(err.Error())
 	}
-	defer stmtIns.Close() 
+	defer stmtIns.Close()
 
 	ehcsBroker := os.Getenv("OEHCS_EXTERNAL_CONNECT_STRING")
 	if ehcsBroker == "" {
@@ -71,21 +71,21 @@ func main() {
 
 	fmt.Println("connected to Kafka...")
 	defer consumer.Close()
-	
+
 	//get ACCS app instance name
 	appName := os.Getenv("ORA_APP_NAME")
 	if appName == "" {
 		appName = "accsgokafkamysql"
 	}
-	
+
 	appInstance := os.Getenv("ORA_INSTANCE_NAME")
 	if appInstance == "" {
 		appInstance = "instance1"
 	}
-	
+
 	processedby := appName + "_" + appInstance
-	
-	fmt.Println("Processed by instance "+ processedby)
+
+	fmt.Println("Processed by instance " + processedby)
 
 	signals := make(chan os.Signal, 1)
 	signal.Notify(signals, os.Interrupt)
