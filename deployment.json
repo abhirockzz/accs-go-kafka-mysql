@@ -1,0 +1,16 @@
+{
+  "memory": "2G",
+  "instances": 1,
+  "services": [
+		{
+			"type": "MySQLCS",
+			"name": "<MySQL instance>",
+			"username":"<username>",
+			"password":"<password>"
+		},
+		{
+			"type": "OEHCS",
+			"name": "<Kafka topic name>"
+		}
+	  ]
+}

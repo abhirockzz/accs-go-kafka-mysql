@@ -1,0 +1,11 @@
+ CREATE TABLE `datadump` (
+        `uid` INT(10) NOT NULL AUTO_INCREMENT,
+        `topic` VARCHAR(64) NULL DEFAULT NULL,
+        `partition` INT(64) NULL DEFAULT NULL,
+		`offset` INT(64) NULL DEFAULT NULL,
+		`key` VARCHAR(64) NULL DEFAULT NULL,
+		`value` VARCHAR(64) NULL DEFAULT NULL,
+		`processedby` VARCHAR(64) NULL DEFAULT NULL,
+        `createdat` VARCHAR(64) NULL DEFAULT NULL,
+        PRIMARY KEY (`uid`)
+    );
