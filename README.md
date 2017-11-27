@@ -1,9 +1,8 @@
 ## Build
 
-
 - `git clone https://github.com/abhirockzz/accs-go-kafka-mysql.git`
 - `cd accs-go-kafka-mysql`
-- `zip accs-go-kafka-mysql.zip gokafkamysql.go start.sh manifest.json`
+- `zip accs-go-kafka-mysql.zip gokafkamysql.go start.sh`
 
 ## Run locally
 
@@ -13,6 +12,6 @@
 - `go get github.com/go-sql-driver/mysql`
 - `go run gokafkamysql.go`
  
-## Deploy to Oracle Application Container Cloud
+## Deploy to Oracle Application Container Cloud & test the app
 
-Check out the blog - ['Go' for Kafka on Oracle Cloud]()
+Check out the blog - ['Go' for Kafka on Oracle Cloud](https://medium.com/oracledevs/go-with-kafka-mysql-on-oracle-cloud-9c93e71167c2)
